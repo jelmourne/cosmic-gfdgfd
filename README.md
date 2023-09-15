@@ -41,19 +41,40 @@ The application will have two types of end users which are as follows:
 The functionalities of each end user within the app will depend on the permission granted for that user (either organizer/admin or staff).
 
 #### iii. Integration of the end users with the project (user stories)
+- As an event organizer, I want to see up-to-date data on ticket sales and attendee demographics to make informed decisions about the festival
+- As an event organizer, I want to register artist/band information, including biographies and performance schedules
+- As an event organizer, I want to manage production requirements such as stage setups, sound equipment and lighting
+- As an event organizer, I want to communicate with staff and attendees by sending updates and announcements about the festival
+- As event staff, I want to check in event-goers and scan their tickets using a QR scanner that connects to the application
+- As event staff, I want to have a digital map of the festival grounds to help event-goers with directions and information
+- As event staff, I want to see attendance data and check attendance at events or stages
 
 #### iv. Areas covered by this project
+- **Event Planning and Scheduling:** Creating festival schedules, registering performer information, coordinating productions requirements
+- **Ticketing and Sales:** Managing ticket sales, record all data regarding ticket sales
+- **Staff and Volunteer Management:** Assigning roles and tasks to event staff and volunteers
+- **Map and Directional Services:** Providing digital maps of the festival grounds
+- **Technical Production Management:** Coordinating technical requirements, managing stage equipment 
 
 ## Project Users, Actors, Vendors and Actuators
+
 #### i. Users:
 - Event organizers: Individuals who are hosting the event, or who are helping to organize the event at a managerial level.
 - Event staff: Individuals who are working or volunteering at the event.
 
 #### ii. Actors:
-- Scanning devices: Reads QR code on customer tickets in order to mark the ticket as used in the database.
+- Event Attendees: Purchase tickets and access event information through the festival’s website, as well as use scannable tickets for entry
+- Ticketing and payment providers: Third-party ticketing and payment processing services will facilitate the purchase of tickets and secure payment.
+
 
 #### iii. Vendors:
+- Cloud Hosting Provider
+- Database Management Service (PostgreSQL)
+
 #### iv. Actuators:
+- QR/RFID Scanners: Used to scan wristbands for entry control and tracking attendees
+- Ticket Printers: To print physical tickets for attendees who weren’t able to get a digital version (i.e. bought at door)
+
 
 
 ## Project Properties
