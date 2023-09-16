@@ -83,4 +83,5 @@ For this project we choose to create our desktop application using C# on the .NE
 In addition to the MS tool set already included within Visual Studio we will also need to import a C# QR Reader, Google Maps API, and Npgsql to configure PostgreSQL to work natively on the .NET ecosystem. Git and Github will be used for version control and collaboration and to set up our codebase. In order to avoid any conflicts in the code, separate branches will be used by each team member while implementing features. Once completed, changes will be merged into the main branch.
 -  **Language**: C#
 -  **Database**: PostgreSQL
--  **Tools/Frameworks**: .NET, C# QR Scanner, Npgsql, Git, Github, Google API
+- **Tools/Framework:** .NET, C# QR Scanner, Npgsql, Google Map API
+- **Version Control:** Git, Github (jelmourne/cosmic-management-system)
