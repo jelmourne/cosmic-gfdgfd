@@ -1,0 +1,15 @@
+C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\cosmic-management-system.exe.config
+C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\cosmic-management-system.exe
+C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\cosmic-management-system.pdb
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system.csproj.AssemblyReference.cache
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\MainWindow.g.cs
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\App.g.cs
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system_MarkupCompile.cache
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system_MarkupCompile.lref
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\MainWindow.baml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system.g.resources
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic_management_system.Properties.Resources.resources
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system.csproj.GenerateResource.cache
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system.csproj.CoreCompileInputs.cache
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system.exe
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system.pdb
