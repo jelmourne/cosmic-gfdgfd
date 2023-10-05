@@ -3,21 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:UserControl="clr-namespace:cosmic_management_system.View.UserControls"
         xmlns:local="clr-namespace:cosmic_management_system"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Rectangle HorizontalAlignment="Left" Height="434" Fill="Gray" VerticalAlignment="Center" Width="176"/>
-        <Label Content="Admin" HorizontalAlignment="Left" Margin="10,1,0,0" VerticalAlignment="Top"/>
-        <Rectangle HorizontalAlignment="Left" Height="39" Margin="176,0,0,0" Fill="LightGray" VerticalAlignment="Top" Width="624"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="197,10,0,0" TextWrapping="Wrap" Text="Search" VerticalAlignment="Top" Width="148" TextChanged="TextBox_TextChanged"/>
-        <Button Content="Home" HorizontalAlignment="Left" Height="20" Margin="26,49,0,0" VerticalAlignment="Top" Width="124" Background="#00DDDDDD" BorderBrush="{x:Null}" Click="Button_Click"/>
-        <Button Content="Attendees" HorizontalAlignment="Left" Height="20" Margin="26,74,0,0" VerticalAlignment="Top" Width="124"/>
-        <Button Content="Artists" HorizontalAlignment="Left" Height="20" Margin="26,99,0,0" VerticalAlignment="Top" Width="124"/>
-        <Button Content="Venu Map" HorizontalAlignment="Left" Height="20" Margin="26,124,0,0" VerticalAlignment="Top" Width="124"/>
-        <Button Content="Schedule" HorizontalAlignment="Left" Height="20" Margin="26,149,0,0" VerticalAlignment="Top" Width="124"/>
-        <Button Content="Production" HorizontalAlignment="Left" Height="20" Margin="26,174,0,0" VerticalAlignment="Top" Width="124"/>
-        <Button Content="Vendors" HorizontalAlignment="Left" Height="20" Margin="26,199,0,0" VerticalAlignment="Top" Width="124"/>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Column="0" Fill="Aqua" Width="200" Grid.RowSpan="2"></Rectangle>
+        <UserControl:NavBar Grid.Column="1" Grid.Row="0"></UserControl:NavBar>
+        <TextBlock Text="Admin" FontWeight="Bold" FontSize="22" Margin="10,0,0,0"></TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <UserControl:NavButton  Height="40" Margin="10"></UserControl:NavButton>
+            <UserControl:NavButton  Height="40" Margin="10"></UserControl:NavButton>
+            <UserControl:NavButton  Height="40" Margin="10"></UserControl:NavButton>
+            <UserControl:NavButton  Height="40" Margin="10"></UserControl:NavButton>
+            <UserControl:NavButton  Height="40" Margin="10"></UserControl:NavButton>
+        </StackPanel>
+            
+        
     </Grid>
 </Window>
