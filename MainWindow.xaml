@@ -6,7 +6,10 @@
         xmlns:UserControl="clr-namespace:cosmic_management_system.View.UserControls"
         xmlns:local="clr-namespace:cosmic_management_system"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        d:FontFamily="Corbel"
+        Title="Cosmic Management" d:Height="500" d:Width="800"
+        UseLayoutRounding="True">
+             
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -16,17 +19,18 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Rectangle Grid.Column="0" Fill="Aqua" Width="200" Grid.RowSpan="2"></Rectangle>
+        <Rectangle Grid.Column="0" Fill="DarkGray" Width="200" Grid.RowSpan="2"></Rectangle>
         <UserControl:NavBar Grid.Column="1" Grid.Row="0"></UserControl:NavBar>
-        <TextBlock Text="Admin" FontWeight="Bold" FontSize="22" Margin="10,0,0,0"></TextBlock>
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <UserControl:NavButton  Height="40" Margin="10"></UserControl:NavButton>
-            <UserControl:NavButton  Height="40" Margin="10"></UserControl:NavButton>
-            <UserControl:NavButton  Height="40" Margin="10"></UserControl:NavButton>
-            <UserControl:NavButton  Height="40" Margin="10"></UserControl:NavButton>
-            <UserControl:NavButton  Height="40" Margin="10"></UserControl:NavButton>
+        <TextBlock Text="Admin" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" Margin="10" Opacity="0.4"></TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="7,0,0,0">
+            <UserControl:NavButton Title="HOME" Image="Resource/house.png" Height="40" Margin="7" HorizontalAlignment="Left" DataContext="{Binding ElementName=MainPage}"></UserControl:NavButton>
+            <UserControl:NavButton Title="ATTENDIES" Image="Resource/users.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
+            <UserControl:NavButton Title="ARTISTS" Image="Resource/music.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
+            <UserControl:NavButton Title="MAP" Image="Resource/map.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
+            <UserControl:NavButton Title="SCHEDULE" Image="Resource/calendar.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
+            <UserControl:NavButton Title="PRODUCTION" Image="Resource/sliders.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
+            <UserControl:NavButton Title="VENDORS" Image="Resource/bag.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
         </StackPanel>
-            
-        
+        <Frame x:Name="MainPage" Grid.Column="1" Grid.Row="1"></Frame>
     </Grid>
 </Window>

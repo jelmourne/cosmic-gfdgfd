@@ -18,3 +18,7 @@ C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-
 C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system.csproj.CoreCompileInputs.cache
 C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system.exe
 C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system.pdb
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\HomePage.g.cs
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\LoginPage.g.cs
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\HomePage.baml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\LoginPage.baml

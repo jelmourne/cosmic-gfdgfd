@@ -12,29 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using cosmic_management_system.View.UserPage;
 
-
-namespace cosmic_management_system {
+namespace cosmic_management_system.View.UserPage {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class MainWindow : Window {
-        public MainWindow() {
+    public partial class HomePage : Page {
+        public HomePage() {
             InitializeComponent();
-            MainPage.Content = new HomePage();
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {
-            
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e) {
-
-        }
-        
-        
-
-
     }
 }

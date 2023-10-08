@@ -8,5 +8,22 @@
              d:DesignHeight="40" d:Width="600">
     <Grid>
         <Rectangle Fill="LightGray"></Rectangle>
+        <Border BorderThickness="1" CornerRadius="16" BorderBrush="SlateGray" Width="200" HorizontalAlignment="Left" Margin="2">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Resource/magnifying.png" Height="16" Margin="5"  RenderOptions.EdgeMode="Aliased"></Image>
+                <TextBlock Text="Search" VerticalAlignment="Center"></TextBlock>
+                <TextBox VerticalAlignment="Center" Background="Transparent" BorderThickness="0"></TextBox>
+            </StackPanel>
+ 
+        </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button  Background="Transparent" BorderThickness="0" Margin="10,3,15,3">
+                <Image Source="/Resource/gear.png"  RenderOptions.EdgeMode="Aliased"></Image>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Margin="10,3,15,3">
+                <Image Source="/Resource/qrcode.png"  RenderOptions.EdgeMode="Aliased"></Image>
+            </Button>
+        </StackPanel>
+
     </Grid>
 </UserControl>

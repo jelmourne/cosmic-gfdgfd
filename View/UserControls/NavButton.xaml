@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:cosmic_management_system.View.UserControls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             x:Name="Root"
              >
     <Grid>
         <Button Click="Button_Click" Background="Transparent" BorderThickness="0">
-            <StackPanel Orientation="Horizontal">
-                <Image Source="/Resource/bag.png" Width="20" Margin="0,0,5,0" ></Image>
-                <TextBlock Text="Button" FontSize="20" VerticalAlignment="Center"></TextBlock>
+            <StackPanel Orientation="Horizontal" Width="175">
+                <Image Source="{Binding Image, ElementName=Root}" Margin="0,0,10,0" Width="16" RenderOptions.EdgeMode="Aliased" Opacity="0.7"></Image>
+                <TextBlock Text="{Binding Title, ElementName=Root}" FontSize="16" VerticalAlignment="Center"></TextBlock>
             </StackPanel>
         </Button>
     </Grid>
