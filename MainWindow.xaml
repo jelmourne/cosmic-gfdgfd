@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:cosmic_management_system"
         mc:Ignorable="d"
         d:FontFamily="Corbel"
-        Title="Cosmic Management" d:Height="500" d:Width="800"
+        Title="Cosmic Management" d:Height="600" d:Width="800"
         UseLayoutRounding="True">
              
     <Grid>
@@ -17,20 +17,31 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Rectangle Grid.Column="0" Fill="DarkGray" Width="200" Grid.RowSpan="2"></Rectangle>
+        <Rectangle Grid.Column="0" Fill="DarkGray" Width="200" Grid.RowSpan="9"></Rectangle>
         <UserControl:NavBar Grid.Column="1" Grid.Row="0"></UserControl:NavBar>
-        <TextBlock Text="Admin" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" Margin="10" Opacity="0.4"></TextBlock>
-        <StackPanel Grid.Row="1" Grid.Column="0" Margin="7,0,0,0">
-            <UserControl:NavButton Title="HOME" Image="Resource/house.png" Height="40" Margin="7" HorizontalAlignment="Left" DataContext="{Binding ElementName=MainPage}"></UserControl:NavButton>
-            <UserControl:NavButton Title="ATTENDIES" Image="Resource/users.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
-            <UserControl:NavButton Title="ARTISTS" Image="Resource/music.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
-            <UserControl:NavButton Title="MAP" Image="Resource/map.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
-            <UserControl:NavButton Title="SCHEDULE" Image="Resource/calendar.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
-            <UserControl:NavButton Title="PRODUCTION" Image="Resource/sliders.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
-            <UserControl:NavButton Title="VENDORS" Image="Resource/bag.png" Height="40" Margin="7" HorizontalAlignment="Left"></UserControl:NavButton>
-        </StackPanel>
-        <Frame x:Name="MainPage" Grid.Column="1" Grid.Row="1"></Frame>
+        <TextBlock x:Name="AccountType" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" Margin="10" Opacity="0.4"></TextBlock>
+        <UserControl:NavButton Grid.Row="1" Title="HOME" Image="Resource/house.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="HomeButton_Click"></UserControl:NavButton>
+        <UserControl:NavButton Grid.Row="2" Title="ATTENDIES" Image="Resource/users.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="AttendiesButton_Click"></UserControl:NavButton>
+        <UserControl:NavButton Grid.Row="3" Title="ARTISTS" Image="Resource/music.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="ArtistButton_Click"></UserControl:NavButton>
+        <UserControl:NavButton Grid.Row="4" Title="MAP" Image="Resource/map.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="MapButton_Click"></UserControl:NavButton>
+        <UserControl:NavButton Grid.Row="5" Title="SCHEDULE" Image="Resource/calendar.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="ScheduleButton_Click"></UserControl:NavButton>
+        <UserControl:NavButton Grid.Row="6" Title="PRODUCTION" Image="Resource/sliders.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="ProdButton_Click"></UserControl:NavButton>
+        <UserControl:NavButton Grid.Row="7" Title="VENDORS" Image="Resource/bag.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="VendorsButton_Click"></UserControl:NavButton>
+        <Border Grid.Row="8" Grid.Column="0" Height="50" Background="Transparent" BorderThickness="1" BorderBrush="SlateGray" Margin="10" CornerRadius="4" VerticalAlignment="Bottom" >
+            <StackPanel  Orientation="Horizontal"  >
+                <Image Source="Resource/user.png" Width="25" Margin="10" Opacity="0.7"></Image>
+                <TextBlock x:Name="UserId" Text="Hi, Justin" VerticalAlignment="Center" FontSize="19"></TextBlock>
+            </StackPanel>
+        </Border>
+        <Frame x:Name="MainPage" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1"></Frame>
     </Grid>
 </Window>

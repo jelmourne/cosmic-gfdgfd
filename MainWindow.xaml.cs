@@ -21,7 +21,26 @@ namespace cosmic_management_system {
     /// </summary>
     public partial class MainWindow : Window {
         public MainWindow() {
+            
             InitializeComponent();
+            User user = new User();
+            user.name = "Justin";
+            user.admin = false;
+
+            if(user.name != null) {
+                if (user.name.Length > 10) {
+                    UserId.Text = "Hi, "+user.name.Substring(0, 10);
+                }
+                else {
+                    UserId.Text = "Hi, " + user.name;
+                }
+
+                var IsAdmin = (user.admin == true) ? AccountType.Text = "Admin" : AccountType.Text = "User";
+         
+            }
+            else {
+                UserId.Text = "Login";
+            }
             MainPage.Content = new HomePage();
         }
 
@@ -32,9 +51,37 @@ namespace cosmic_management_system {
         private void Button_Click(object sender, RoutedEventArgs e) {
 
         }
-        
-        
 
+        private void HomeButton_Click(object sender, RoutedEventArgs e) {
+            MainPage.Content = new HomePage();
+        }
 
+        private void AttendiesButton_Click(object sender, RoutedEventArgs e) {
+            MainPage.Content = new AttendiesPage();
+        }
+
+        private void ArtistButton_Click(object sender, RoutedEventArgs e) {
+            MainPage.Content = new ArtistsPage();
+        }
+
+        private void MapButton_Click(object sender, RoutedEventArgs e) {
+            MainPage.Content = new MapPage();
+        }
+
+        private void ScheduleButton_Click(object sender, RoutedEventArgs e) {
+            MainPage.Content = new SchedulePage();
+        }
+
+        private void ProdButton_Click(object sender, RoutedEventArgs e) {
+            MainPage.Content = new ProdPage();
+        }
+
+        private void VendorsButton_Click(object sender, RoutedEventArgs e) {
+            MainPage.Content = new VendorPage();
+        }
+    }
+    public class User {
+        public string name { get; set; }
+        public bool admin {  get; set; }
     }
 }

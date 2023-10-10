@@ -41,11 +41,12 @@ namespace cosmic_management_system.View.UserControls {
 
         public static readonly DependencyProperty image =
             DependencyProperty.Register("Image", typeof(ImageSource), typeof(NavButton), new PropertyMetadata());
-   
 
+
+        public event RoutedEventHandler Click;
 
         private void Button_Click(object sender, RoutedEventArgs e) {
-           
+           if (Click != null) Click(this,e);
         }
     }
 }

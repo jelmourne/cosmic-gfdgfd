@@ -22,3 +22,15 @@ C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\Us
 C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\LoginPage.g.cs
 C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\HomePage.baml
 C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\LoginPage.baml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\AttendiesPage.g.cs
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\AttendiesPage.baml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\ArtistsPage.g.cs
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\MapPage.g.cs
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\ProdPage.g.cs
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\SchedulePage.g.cs
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\VendorPage.g.cs
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\ArtistsPage.baml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\MapPage.baml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\ProdPage.baml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\SchedulePage.baml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\VendorPage.baml
