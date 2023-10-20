@@ -42,6 +42,6 @@
                 <TextBlock x:Name="UserId" Text="Hi, Justin" VerticalAlignment="Center" FontSize="19"></TextBlock>
             </StackPanel>
         </Border>
-        <Frame x:Name="MainPage" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1"></Frame>
+        <Frame x:Name="MainPage" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.RowSpan="9"></Frame>
     </Grid>
 </Window>

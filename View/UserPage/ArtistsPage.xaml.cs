@@ -1,7 +1,9 @@
 ﻿using Npgsql;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,7 +27,8 @@ namespace cosmic_management_system.View.UserPage {
         // Command Adapter Execute Query: creating object of the command adapter
         public static NpgsqlCommand cmd;
 
-        // ADD ARTIST TO DB
+
+        // ---------- Add Artist to Database ---------- //
         private void AddArtistBtn_Click(object sender, RoutedEventArgs e)
         {
             string firstName = artistFirstNameBox.Text;
@@ -38,6 +41,7 @@ namespace cosmic_management_system.View.UserPage {
             string address_line1 = artistAddress1Box.Text == "" ? null : artistAddress1Box.Text;
             string biography = artistBiographyBox.Text == "" ? null : artistBiographyBox.Text;
 
+            // Need to create function to verify dob is of correct format
             DateTime dob = DateTime.Now;
             try
             {
@@ -110,8 +114,17 @@ namespace cosmic_management_system.View.UserPage {
                     cmd.Parameters.AddWithValue("@dob", dob);
                     cmd.Parameters.AddWithValue("@biography", biography);
                     cmd.Parameters.AddWithValue("@address_id", address_id);
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Artist added");
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Artist added");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to add artist");
+                    }
                 }
             } catch (NpgsqlException ex)
             {
@@ -119,6 +132,59 @@ namespace cosmic_management_system.View.UserPage {
             }
             con.Close();
         }
+
+        // ---------- Remove Artist From Database ---------- //
+        private void DeleteArtistBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string firstName = artistFirstNameBox.Text;
+            string lastName = artistLastNameBox.Text;
+
+            DateTime dob = DateTime.Now;
+            try
+            {
+                dob = (DateTime.Parse(artistDobBox.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+
+            EstablishConnection();
+            con.Open();
+
+            string Query = "DELETE from festival.artist WHERE first_name=@first_name AND last_name=@last_name AND dob=@dob";
+            try
+            {
+                using (cmd = new NpgsqlCommand(Query, con))
+                {
+                    cmd.Parameters.AddWithValue("@first_name", firstName);
+                    cmd.Parameters.AddWithValue("@last_name", lastName);
+                    cmd.Parameters.AddWithValue("@dob", dob);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Artist deleted");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to remove artist");
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            con.Close();
+
+        }
+
+        // ------------------------------------------------------------- //
+        //                       HELPER FUNCTIONS                        //
+        // ------------------------------------------------------------- //
 
         // Establish connection to DB
         private void EstablishConnection()
