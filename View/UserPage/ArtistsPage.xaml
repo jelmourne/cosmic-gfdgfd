@@ -9,6 +9,17 @@
       Title="ArtistsPage">
 
     <Grid>
-        <TextBlock Text="page 4"></TextBlock>
+        <DataGrid x:Name="ArtistList" AutoGenerateColumns="False" GridLinesVisibility="None" ColumnHeaderStyle="">
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First Name" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Last Name" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Stage" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Biography" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Address" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Page>
