@@ -204,9 +204,9 @@ namespace cosmic_management_system.View.UserPage {
             EstablishConnection();
             con.Open();
 
-            string Query = "SELECT * FROM festival.artist inner join festival.address a on a.address_id = artist.address_id " +
-                           "inner join festival.city c on c.city_id = a.city_id " +
-                           "inner join festival.country c2 on c.country_id = c2.country_id " +
+            string Query = "SELECT * FROM festival.artist INNER JOIN festival.address a on a.address_id = artist.address_id " +
+                           "INNER JOIN festival.city c on c.city_id = a.city_id " +
+                           "INNER JOIN festival.country c2 on c.country_id = c2.country_id " +
                            "WHERE first_name=@first_name AND last_name=@last_name AND dob=@dob ";
 
             try
@@ -239,7 +239,7 @@ namespace cosmic_management_system.View.UserPage {
 
                     if (!dataFound)
                     {
-                        MessageBox.Show("No student found");
+                        MessageBox.Show("No artist found");
                     }
 
                 }
@@ -250,6 +250,130 @@ namespace cosmic_management_system.View.UserPage {
             }
             con.Close();
         }
+
+        // ---------- Update Artist In Database ---------- //
+        private void UpdateArtistBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string firstName = artistFirstNameBox.Text;
+            string lastName = artistLastNameBox.Text;
+
+            DateTime dob = DateTime.Now;
+            try
+            {
+                dob = (DateTime.Parse(artistDobBox.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            EstablishConnection();
+            con.Open();
+
+            string Query = "UPDATE festival.artist AS a " +
+                           "SET stage_name = @stageName, " +
+                           "    biography = @biography " +
+                           "WHERE a.first_name = @first_name " +
+                           "AND a.last_name = @last_name " +
+                           "AND a.dob = @dob ";
+
+            try
+            {
+                using (cmd = new NpgsqlCommand(Query, con))
+                {
+
+                    cmd.Parameters.AddWithValue("@stageName", artistStageNameBox.Text);
+                    cmd.Parameters.AddWithValue("@biography", artistBiographyBox.Text);
+                    cmd.Parameters.AddWithValue("@first_name", firstName);
+                    cmd.Parameters.AddWithValue("@last_name", lastName);
+                    cmd.Parameters.AddWithValue("@dob", dob);
+                       
+                    cmd.ExecuteNonQuery();
+                }
+
+                string addressQuery = "UPDATE festival.address AS addr " +
+                        "SET address_line1 = @addressLine1, " +
+                        "    address_line2 = @addressLine2, " +
+                        "    postal = @postal, " +
+                        "    phone = @phone, " +
+                        "    district = @district " +
+                        "FROM festival.artist AS a " +
+                        "WHERE a.first_name = @first_name " +
+                        "AND a.last_name = @last_name " +
+                        "AND a.dob = @dob " +
+                        "AND a.address_id = addr.address_id";
+
+                using (NpgsqlCommand addressCmd = new NpgsqlCommand(addressQuery, con))
+                {
+                    addressCmd.Parameters.AddWithValue("@addressLine1", artistAddress1Box.Text);
+                    addressCmd.Parameters.AddWithValue("@addressLine2", artistAddress2Box.Text);
+                    addressCmd.Parameters.AddWithValue("@postal", artistPostalBox.Text);
+                    addressCmd.Parameters.AddWithValue("@phone", artistPhoneBox.Text);
+                    addressCmd.Parameters.AddWithValue("@district", artistDistrictBox.Text);
+                    addressCmd.Parameters.AddWithValue("@first_name", firstName);
+                    addressCmd.Parameters.AddWithValue("@last_name", lastName);
+                    addressCmd.Parameters.AddWithValue("@dob", dob);
+                    addressCmd.ExecuteNonQuery();
+                }
+
+
+
+                string cityQuery = "UPDATE festival.city AS c " +
+                                    "SET city = @city " +
+                                    "FROM festival.address AS addr " +
+                                    "WHERE addr.address_id = a.address_id";
+
+                using (NpgsqlCommand cityCmd = new NpgsqlCommand(cityQuery, con))
+                {
+                    cityCmd.Parameters.AddWithValue("@city", artistCityBox.Text);
+                    cityCmd.ExecuteNonQuery();
+                }
+
+                string countryQuery = "UPDATE festival.country AS c2 " +
+                                        "SET country = @country " +
+                                        "FROM festival.city AS c " +
+                                        "WHERE c.city_id = addr.city_id";
+
+                using (NpgsqlCommand countryCmd = new NpgsqlCommand(countryQuery, con))
+                {
+                    countryCmd.Parameters.AddWithValue("@country", artistCountryBox.Text);
+                    countryCmd.ExecuteNonQuery();
+                }
+
+                cmd.Parameters.AddWithValue("@country", artistCountryBox.Text);
+
+
+                using (cmd = new NpgsqlCommand(Query, con))
+                {
+                    cmd.Parameters.AddWithValue("@addressLine1", artistAddress1Box.Text);
+                    cmd.Parameters.AddWithValue("@addressLine2", artistAddress2Box.Text);
+                    cmd.Parameters.AddWithValue("@postal", artistPostalBox.Text);
+                    cmd.Parameters.AddWithValue("@phone", artistPhoneBox.Text);
+                    cmd.Parameters.AddWithValue("@district", artistDistrictBox.Text);
+                    cmd.Parameters.AddWithValue("@first_name", firstName);
+                    cmd.Parameters.AddWithValue("@last_name", lastName);
+                    cmd.Parameters.AddWithValue("@dob", dob);
+
+                    cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Artist information updated");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error in updating artist");
+                    }
+                }
+
+            }
+            catch (NpgsqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            con.Close();
+        }
+
 
             // ------------------------------------------------------------- //
             //                       HELPER FUNCTIONS                        //

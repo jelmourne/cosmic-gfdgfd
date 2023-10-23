@@ -72,7 +72,7 @@
 
         <Button x:Name="addArtistBtn" Grid.Column="3" Content="Add Artist" HorizontalAlignment="Left" Margin="20,17,0,0" Grid.Row="1" VerticalAlignment="Top" Height="82" Width="222" Click="AddArtistBtn_Click" Grid.RowSpan="2" />
         <Button x:Name="deleteArtistBtn" Grid.Column="3" Content="Delete Artist" HorizontalAlignment="Left" Margin="20,7,0,0" Grid.Row="3" VerticalAlignment="Top" Height="83" Width="222" Grid.RowSpan="2" Click="DeleteArtistBtn_Click"/>
-        <Button x:Name="updateArtistBtn" Grid.Column="3" Content="Update Artist" HorizontalAlignment="Left" Margin="20,46,0,0" Grid.Row="4" VerticalAlignment="Top" Height="82" Width="222" Grid.RowSpan="2"/>
+        <Button x:Name="updateArtistBtn" Grid.Column="3" Content="Update Artist" HorizontalAlignment="Left" Margin="20,46,0,0" Grid.Row="4" VerticalAlignment="Top" Height="82" Width="222" Grid.RowSpan="2" Click="UpdateArtistBtn_Click"/>
         <Button x:Name="selectArtistBtn" Grid.Column="3" Content="Select Artist" HorizontalAlignment="Left" Margin="20,21,0,0" Grid.Row="6" VerticalAlignment="Top" Height="83" Width="222" Grid.RowSpan="2" Click="SelectArtistBtn_Click"/>
         <Label Grid.Column="2" Content="Phone" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" Padding="0,0,0,0" Margin="148,10,0,0"/>
         <TextBox x:Name="artistPhoneBox" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="5" TextWrapping="Wrap"  VerticalAlignment="Top" Width="136" Height="18" FontSize="11" Padding="0,3,0,0" BorderBrush="#FFD7DBDC" Margin="147,28,0,0"/>
