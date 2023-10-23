@@ -37,9 +37,12 @@ namespace cosmic_management_system.View.UserPage {
             string country = artistCountryBox.Text;
             string city = artistCityBox.Text;
             string postal = artistPostalBox.Text;
+            string address_line1 = artistAddress1Box.Text;
             string address_line2 = artistAddress2Box.Text;
-            string address_line1 = artistAddress1Box.Text == "" ? null : artistAddress1Box.Text;
-            string biography = artistBiographyBox.Text == "" ? null : artistBiographyBox.Text;
+            string district = artistDistrictBox.Text;
+            string biography = artistBiographyBox.Text;
+            string phone = artistPhoneBox.Text;
+
 
             // Need to create function to verify dob is of correct format
             DateTime dob = DateTime.Now;
@@ -85,13 +88,13 @@ namespace cosmic_management_system.View.UserPage {
                 }
             } else // If city is already in DB, insert address with city ID to DB
             {
-                Query = "INSERT INTO festival.address(address_line1, address_line2, postal, city_id) VALUES (@address_line1, @address_line2, @postal, @city_id)";
+                Query = "INSERT INTO festival.address(address_line1, address_line2, district, postal, phone, city_id) VALUES (@address_line1, @address_line2, @district, @postal, @phone, @city_id)";
                 using (cmd = new NpgsqlCommand(Query, con)) {
                     cmd.Parameters.AddWithValue("@address_line1", address_line1);
                     cmd.Parameters.AddWithValue("@address_line2", address_line2);
-                    //cmd.Parameters.AddWithValue("@district", "District");
+                    cmd.Parameters.AddWithValue("@district", district);
                     cmd.Parameters.AddWithValue("@postal", postal);
-                    //cmd.Parameters.AddWithValue("@phone", "6137918927");
+                    cmd.Parameters.AddWithValue("@phone", phone);
                     cmd.Parameters.AddWithValue("@city_id", city_id);
                     cmd.ExecuteNonQuery();
                 }
@@ -182,12 +185,78 @@ namespace cosmic_management_system.View.UserPage {
 
         }
 
-        // ------------------------------------------------------------- //
-        //                       HELPER FUNCTIONS                        //
-        // ------------------------------------------------------------- //
+        // ---------- Select Artist From Database ---------- //
+        private void SelectArtistBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string firstName = artistFirstNameBox.Text;
+            string lastName = artistLastNameBox.Text;
 
-        // Establish connection to DB
-        private void EstablishConnection()
+            DateTime dob = DateTime.Now;
+            try
+            {
+                dob = (DateTime.Parse(artistDobBox.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            EstablishConnection();
+            con.Open();
+
+            string Query = "SELECT * FROM festival.artist inner join festival.address a on a.address_id = artist.address_id " +
+                           "inner join festival.city c on c.city_id = a.city_id " +
+                           "inner join festival.country c2 on c.country_id = c2.country_id " +
+                           "WHERE first_name=@first_name AND last_name=@last_name AND dob=@dob ";
+
+            try
+            {
+                using (cmd = new NpgsqlCommand(Query, con))
+                {
+                    cmd.Parameters.AddWithValue("@first_name", firstName);
+                    cmd.Parameters.AddWithValue("@last_name", lastName);
+                    cmd.Parameters.AddWithValue("@dob", dob);
+
+                    NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                    bool dataFound = false;
+                    while (reader.Read())
+                    {
+                        dataFound = true;
+                        artistFirstNameBox.Text = reader["first_name"].ToString();
+                        artistLastNameBox.Text = reader["last_name"].ToString();
+                        artistStageNameBox.Text = reader["stage_name"].ToString();
+                        artistDobBox.Text = reader["dob"].ToString();
+                        artistAddress1Box.Text = reader["address_line1"].ToString();
+                        artistAddress2Box.Text = reader["address_line2"].ToString();
+                        artistDistrictBox.Text = reader["district"].ToString();
+                        artistPostalBox.Text = reader["postal"].ToString();
+                        artistCountryBox.Text = reader["country"].ToString();
+                        artistCityBox.Text = reader["city"].ToString();
+                        artistBiographyBox.Text = reader["biography"].ToString();
+                        artistPhoneBox.Text = reader["phone"].ToString();
+                    }
+
+                    if (!dataFound)
+                    {
+                        MessageBox.Show("No student found");
+                    }
+
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            con.Close();
+        }
+
+            // ------------------------------------------------------------- //
+            //                       HELPER FUNCTIONS                        //
+            // ------------------------------------------------------------- //
+
+            // Establish connection to DB
+            private void EstablishConnection()
         {
             try
             {
