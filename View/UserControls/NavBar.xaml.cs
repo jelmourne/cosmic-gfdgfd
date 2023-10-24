@@ -21,5 +21,9 @@ namespace cosmic_management_system.View.UserControls {
         public NavBar() {
             InitializeComponent();
         }
+
+        private void Shutdown_Click(object sender, RoutedEventArgs e) {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -20,6 +21,7 @@ namespace cosmic_management_system.View.UserPage {
     public partial class ArtistsPage : Page {
         public ArtistsPage() {
             InitializeComponent();
+
         }
         // Connect Adapter/Connection: creating connection adapter
         public static NpgsqlConnection con;
