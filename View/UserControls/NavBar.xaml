@@ -17,11 +17,11 @@
  
         </Border>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button  Background="Transparent" BorderThickness="0" Margin="10,3,15,3">
-                <Image Source="/Resource/gear.png"  RenderOptions.EdgeMode="Aliased"></Image>
-            </Button>
             <Button Background="Transparent" BorderThickness="0" Margin="10,3,15,3">
-                <Image Source="/Resource/qrcode.png"  RenderOptions.EdgeMode="Aliased"></Image>
+                <Image Source="/Resource/logout.png"  RenderOptions.EdgeMode="Aliased"></Image>
+            </Button>
+            <Button  Background="Transparent" BorderThickness="0" Margin="10,3,15,3" Click="Shutdown_Click">
+                <Image Source="/Resource/quit.png"  RenderOptions.EdgeMode="Aliased"></Image>
             </Button>
         </StackPanel>
 

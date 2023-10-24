@@ -25,7 +25,7 @@ namespace cosmic_management_system {
             InitializeComponent();
             User user = new User();
             user.name = "Justin";
-            user.admin = false;
+            user.admin = true;
 
             if(user.name != null) {
                 if (user.name.Length > 10) {
@@ -36,7 +36,6 @@ namespace cosmic_management_system {
                 }
 
                 var IsAdmin = (user.admin == true) ? AccountType.Text = "Admin" : AccountType.Text = "User";
-         
             }
             else {
                 UserId.Text = "Login";
@@ -56,7 +55,7 @@ namespace cosmic_management_system {
             MainPage.Content = new HomePage();
         }
 
-        private void AttendiesButton_Click(object sender, RoutedEventArgs e) {
+        private void AttendeesButton_Click(object sender, RoutedEventArgs e) {
             MainPage.Content = new AttendiesPage();
         }
 

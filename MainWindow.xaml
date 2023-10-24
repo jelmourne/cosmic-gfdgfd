@@ -5,11 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:UserControl="clr-namespace:cosmic_management_system.View.UserControls"
         xmlns:local="clr-namespace:cosmic_management_system"
+        WindowStyle="None"
         mc:Ignorable="d"
+        AllowsTransparency="True"
         d:FontFamily="Corbel"
-        Title="Cosmic Management" d:Height="600" d:Width="800"
+        Title="Cosmic Management" d:Height="580" d:Width="800"
         UseLayoutRounding="True">
-             
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -30,7 +36,7 @@
         <UserControl:NavBar Grid.Column="1" Grid.Row="0"></UserControl:NavBar>
         <TextBlock x:Name="AccountType" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" Margin="10" Opacity="0.4"></TextBlock>
         <UserControl:NavButton Grid.Row="1" Title="HOME" Image="Resource/house.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="HomeButton_Click"></UserControl:NavButton>
-        <UserControl:NavButton Grid.Row="2" Title="ATTENDEES" Image="Resource/users.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="AttendiesButton_Click"></UserControl:NavButton>
+        <UserControl:NavButton Grid.Row="2" Title="ATTENDEES" Image="Resource/users.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="AttendeesButton_Click"></UserControl:NavButton>
         <UserControl:NavButton Grid.Row="3" Title="ARTISTS" Image="Resource/music.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="ArtistButton_Click"></UserControl:NavButton>
         <UserControl:NavButton Grid.Row="4" Title="MAP" Image="Resource/map.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="MapButton_Click"></UserControl:NavButton>
         <UserControl:NavButton Grid.Row="5" Title="SCHEDULE" Image="Resource/calendar.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="ScheduleButton_Click"></UserControl:NavButton>
@@ -42,6 +48,6 @@
                 <TextBlock x:Name="UserId" Text="Hi, Justin" VerticalAlignment="Center" FontSize="19"></TextBlock>
             </StackPanel>
         </Border>
-        <Frame x:Name="MainPage" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.RowSpan="9"></Frame>
+        <Frame x:Name="MainPage" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1" Grid.RowSpan="8"></Frame>
     </Grid>
 </Window>

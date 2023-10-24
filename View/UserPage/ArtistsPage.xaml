@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:cosmic_management_system.View.UserPage"
       xmlns:Npgsql="clr-namespace:Npgsql;assembly=Npgsql" x:Class="cosmic_management_system.View.UserPage.ArtistsPage"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="560" d:DesignWidth="800"
       Title="ArtistsPage">
 
     <Grid Background="White">
@@ -49,7 +49,7 @@
         <TextBox x:Name="artistStageNameBox" Grid.Column="2" HorizontalAlignment="Left" Margin="7,32,0,0" Grid.Row="2" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="130" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
         
         <Label Grid.Column="2" Content="Date of birth*" HorizontalAlignment="Left" Margin="147,7,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="82"/>
-        <TextBox x:Name="artistDobBox" Grid.Column="2" HorizontalAlignment="Left" Margin="150,32,0,0" Grid.Row="2" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="130" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+        <DatePicker x:Name="artistDobBox" Grid.Column="2" HorizontalAlignment="Left" Margin="150,32,0,0" Grid.Row="2" Text=" " VerticalAlignment="Top" Width="130" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
         
         <Label Grid.Column="2" Content="Address line 1*" HorizontalAlignment="Left" Margin="4,7,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="89"/>
         <TextBox x:Name="artistAddress1Box" Grid.Column="2" HorizontalAlignment="Center" Margin="0,32,0,0" Grid.Row="3" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="274" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
