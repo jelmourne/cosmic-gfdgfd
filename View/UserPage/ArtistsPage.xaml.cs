@@ -72,7 +72,8 @@ namespace cosmic_management_system.View.UserPage {
                 }
                 else // If country is successfully found, insert city with country ID to DB
                 {    
-                    Query = "INSERT INTO festival.city(city, country_id) VALUES (@city, @country_id)";
+                    Query = "INSERT INTO festival.city(city, country_id) " +
+                            "VALUES (@city, @country_id)";
                     try
                     {
                         using (cmd = new NpgsqlCommand(Query, con))
@@ -88,9 +89,10 @@ namespace cosmic_management_system.View.UserPage {
                 }
             } else // If city is already in DB, insert address with city ID to DB
             {
-                Query = "INSERT INTO festival.address(address_line1, address_line2, district, postal, phone, city_id) VALUES (@address_line1, @address_line2, @district, @postal, @phone, @city_id)";
+                Query = "INSERT INTO festival.address(address_line1, address_line2, district, postal, phone, city_id) " +
+                        "VALUES (@addressLine1, @address_line2, @district, @postal, @phone, @city_id)";
                 using (cmd = new NpgsqlCommand(Query, con)) {
-                    cmd.Parameters.AddWithValue("@address_line1", address_line1);
+                    cmd.Parameters.AddWithValue("@addressLine1", address_line1);
                     cmd.Parameters.AddWithValue("@address_line2", address_line2);
                     cmd.Parameters.AddWithValue("@district", district);
                     cmd.Parameters.AddWithValue("@postal", postal);
@@ -108,11 +110,12 @@ namespace cosmic_management_system.View.UserPage {
             con.Open();
             try
             {
-                Query = "INSERT INTO festival.artist(first_name, last_name, stage_name, dob, biography, address_id) VALUES(@first_name, @last_name, @stage_name, @dob, @biography, @address_id)";
+                Query = "INSERT INTO festival.artist(first_name, last_name, stage_name, dob, biography, address_id) " +
+                        "VALUES(@firstName, @lastName, @stage_name, @dob, @biography, @address_id)";
                 using (var cmd = new NpgsqlCommand(Query, con))
                 {
-                    cmd.Parameters.AddWithValue("@first_name", firstName);
-                    cmd.Parameters.AddWithValue("@last_name", lastName);
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
                     cmd.Parameters.AddWithValue("@stage_name", stageName);
                     cmd.Parameters.AddWithValue("@dob", dob);
                     cmd.Parameters.AddWithValue("@biography", biography);
@@ -156,13 +159,15 @@ namespace cosmic_management_system.View.UserPage {
             EstablishConnection();
             con.Open();
 
-            string Query = "DELETE from festival.artist WHERE first_name=@first_name AND last_name=@last_name AND dob=@dob";
+            string Query = "DELETE from festival.artist " +
+                           "WHERE first_name = @firstName " +
+                           "AND last_name = @lastName AND dob = @dob";
             try
             {
                 using (cmd = new NpgsqlCommand(Query, con))
                 {
-                    cmd.Parameters.AddWithValue("@first_name", firstName);
-                    cmd.Parameters.AddWithValue("@last_name", lastName);
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
                     cmd.Parameters.AddWithValue("@dob", dob);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -207,14 +212,14 @@ namespace cosmic_management_system.View.UserPage {
             string Query = "SELECT * FROM festival.artist INNER JOIN festival.address a on a.address_id = artist.address_id " +
                            "INNER JOIN festival.city c on c.city_id = a.city_id " +
                            "INNER JOIN festival.country c2 on c.country_id = c2.country_id " +
-                           "WHERE first_name=@first_name AND last_name=@last_name AND dob=@dob ";
+                           "WHERE first_name = @firstName AND last_name = @lastName AND dob = @dob ";
 
             try
             {
                 using (cmd = new NpgsqlCommand(Query, con))
                 {
-                    cmd.Parameters.AddWithValue("@first_name", firstName);
-                    cmd.Parameters.AddWithValue("@last_name", lastName);
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
                     cmd.Parameters.AddWithValue("@dob", dob);
 
                     NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -270,38 +275,51 @@ namespace cosmic_management_system.View.UserPage {
             EstablishConnection();
             con.Open();
 
-            string Query = "UPDATE festival.artist AS a " +
-                           "SET stage_name = @stageName, " +
-                           "    biography = @biography " +
-                           "WHERE a.first_name = @first_name " +
-                           "AND a.last_name = @last_name " +
-                           "AND a.dob = @dob ";
-
             try
             {
-                using (cmd = new NpgsqlCommand(Query, con))
-                {
 
-                    cmd.Parameters.AddWithValue("@stageName", artistStageNameBox.Text);
-                    cmd.Parameters.AddWithValue("@biography", artistBiographyBox.Text);
-                    cmd.Parameters.AddWithValue("@first_name", firstName);
-                    cmd.Parameters.AddWithValue("@last_name", lastName);
-                    cmd.Parameters.AddWithValue("@dob", dob);
-                       
-                    cmd.ExecuteNonQuery();
+                string artistQuery = "UPDATE festival.artist " +
+                                     "SET stage_name = @stageName, biography = @biography " +
+                                     "WHERE first_name = @firstName " +
+                                     "AND last_name = @lastName " +
+                                     "AND dob = @dob";
+
+                using (NpgsqlCommand artistCmd = new NpgsqlCommand(artistQuery, con))
+                {
+                    artistCmd.Parameters.AddWithValue("@stageName", artistStageNameBox.Text);
+                    artistCmd.Parameters.AddWithValue("@biography", artistBiographyBox.Text);
+                    artistCmd.Parameters.AddWithValue("@firstName", firstName);
+                    artistCmd.Parameters.AddWithValue("@lastName", lastName);
+                    artistCmd.Parameters.AddWithValue("@dob", dob);
+                    artistCmd.ExecuteNonQuery();
                 }
 
-                string addressQuery = "UPDATE festival.address AS addr " +
-                        "SET address_line1 = @addressLine1, " +
-                        "    address_line2 = @addressLine2, " +
-                        "    postal = @postal, " +
-                        "    phone = @phone, " +
-                        "    district = @district " +
-                        "FROM festival.artist AS a " +
-                        "WHERE a.first_name = @first_name " +
-                        "AND a.last_name = @last_name " +
-                        "AND a.dob = @dob " +
-                        "AND a.address_id = addr.address_id";
+
+                string addressIdQuery = "SELECT address_id FROM festival.artist " +
+                                        "WHERE first_name = @firstName " +
+                                        "AND last_name = @lastName " +
+                                        "AND dob = @dob";
+
+                int addressId;
+                using (NpgsqlCommand addressIdCmd = new NpgsqlCommand(addressIdQuery, con))
+                {
+                    addressIdCmd.Parameters.AddWithValue("@firstName", firstName);
+                    addressIdCmd.Parameters.AddWithValue("@lastName", lastName);
+                    addressIdCmd.Parameters.AddWithValue("@dob", dob);
+
+                    using (NpgsqlDataReader reader = addressIdCmd.ExecuteReader())
+                    {
+                        addressId = reader.Read() ? reader.GetInt32(0) : -1;
+                    }
+                }
+
+                string addressQuery = "UPDATE festival.address " +
+                                      "SET address_line1 = @addressLine1, " +
+                                      "    address_line2 = @addressLine2, " +
+                                      "    postal = @postal, " +
+                                      "    phone = @phone, " +
+                                      "    district = @district " +
+                                      "WHERE address_id = @address_id";
 
                 using (NpgsqlCommand addressCmd = new NpgsqlCommand(addressQuery, con))
                 {
@@ -310,62 +328,61 @@ namespace cosmic_management_system.View.UserPage {
                     addressCmd.Parameters.AddWithValue("@postal", artistPostalBox.Text);
                     addressCmd.Parameters.AddWithValue("@phone", artistPhoneBox.Text);
                     addressCmd.Parameters.AddWithValue("@district", artistDistrictBox.Text);
-                    addressCmd.Parameters.AddWithValue("@first_name", firstName);
-                    addressCmd.Parameters.AddWithValue("@last_name", lastName);
-                    addressCmd.Parameters.AddWithValue("@dob", dob);
+                    addressCmd.Parameters.AddWithValue("@address_id", addressId);
                     addressCmd.ExecuteNonQuery();
                 }
 
+                string cityIdQuery = "SELECT city_id FROM festival.address " +
+                                     "WHERE address_id = @address_id";
 
+                int cityId;
+                using (NpgsqlCommand cityIdCmd = new NpgsqlCommand(cityIdQuery, con))
+                {
+                    cityIdCmd.Parameters.AddWithValue("@address_id", addressId);
 
-                string cityQuery = "UPDATE festival.city AS c " +
-                                    "SET city = @city " +
-                                    "FROM festival.address AS addr " +
-                                    "WHERE addr.address_id = a.address_id";
+                    using (NpgsqlDataReader reader = cityIdCmd.ExecuteReader())
+                    {
+                        cityId = reader.Read() ? reader.GetInt32(0) : -1;
+                    }
+      
+                }
+
+                string cityQuery = "UPDATE festival.city SET city = @city " +
+                                   "WHERE city_id = @city_id";
 
                 using (NpgsqlCommand cityCmd = new NpgsqlCommand(cityQuery, con))
                 {
+                    cityCmd.Parameters.AddWithValue("@city_id", cityId);
                     cityCmd.Parameters.AddWithValue("@city", artistCityBox.Text);
                     cityCmd.ExecuteNonQuery();
                 }
 
-                string countryQuery = "UPDATE festival.country AS c2 " +
-                                        "SET country = @country " +
-                                        "FROM festival.city AS c " +
-                                        "WHERE c.city_id = addr.city_id";
+                string countryIdQuery = "SELECT country_id FROM festival.city " +
+                                        "WHERE city_id = @city_id";
+
+                int countryId;
+                using (NpgsqlCommand countryIdCmd = new NpgsqlCommand(countryIdQuery, con))
+                {
+                    countryIdCmd.Parameters.AddWithValue("@city_id", cityId);
+
+                    using (NpgsqlDataReader reader = countryIdCmd.ExecuteReader())
+                    {
+                        countryId = reader.Read() ? reader.GetInt32(0) : -1;
+                    }
+                }
+
+                string countryQuery = "UPDATE festival.country " +
+                                      "SET country = @country " +
+                                      "WHERE country_id = @country_id";
 
                 using (NpgsqlCommand countryCmd = new NpgsqlCommand(countryQuery, con))
                 {
+                    countryCmd.Parameters.AddWithValue("@country_id", countryId);
                     countryCmd.Parameters.AddWithValue("@country", artistCountryBox.Text);
                     countryCmd.ExecuteNonQuery();
                 }
 
-                cmd.Parameters.AddWithValue("@country", artistCountryBox.Text);
-
-
-                using (cmd = new NpgsqlCommand(Query, con))
-                {
-                    cmd.Parameters.AddWithValue("@addressLine1", artistAddress1Box.Text);
-                    cmd.Parameters.AddWithValue("@addressLine2", artistAddress2Box.Text);
-                    cmd.Parameters.AddWithValue("@postal", artistPostalBox.Text);
-                    cmd.Parameters.AddWithValue("@phone", artistPhoneBox.Text);
-                    cmd.Parameters.AddWithValue("@district", artistDistrictBox.Text);
-                    cmd.Parameters.AddWithValue("@first_name", firstName);
-                    cmd.Parameters.AddWithValue("@last_name", lastName);
-                    cmd.Parameters.AddWithValue("@dob", dob);
-
-                    cmd.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Artist information updated");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error in updating artist");
-                    }
-                }
-
+                MessageBox.Show("Artist updated");
             }
             catch (NpgsqlException ex)
             {
@@ -406,7 +423,7 @@ namespace cosmic_management_system.View.UserPage {
         // Get country ID based off country name inputted on front end
         private int GetCountryId(string country)
         {
-            string Query = "SELECT country_id FROM festival.country WHERE country=@country";
+            string Query = "SELECT country_id FROM festival.country WHERE country = @country";
             int country_id = -1;
 
             try
@@ -461,7 +478,7 @@ namespace cosmic_management_system.View.UserPage {
         private int GetAddressId(string address_line1, int city_id)
         {
             // Get address ID based off address line 1 and city id 
-            string Query = "SELECT address_id FROM festival.address WHERE address_line1 = @address_line1 AND city_id = @city_id";
+            string Query = "SELECT address_id FROM festival.address WHERE address_line1 = @addressLine1 AND city_id = @city_id";
             int address_id = -1;
 
             con.Open();
@@ -469,7 +486,7 @@ namespace cosmic_management_system.View.UserPage {
             {
                 using (cmd = new NpgsqlCommand(Query, con))
                 {
-                    cmd.Parameters.AddWithValue("@address_line1", address_line1);
+                    cmd.Parameters.AddWithValue("@addressLine1", address_line1);
                     cmd.Parameters.AddWithValue("@city_id", city_id);
                     NpgsqlDataReader reader = cmd.ExecuteReader();
 
