@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using cosmic_management_system.Models;
+using Npgsql;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,14 +22,11 @@ namespace cosmic_management_system.View.UserPage {
     public partial class ArtistsPage : Page {
         public ArtistsPage() {
             InitializeComponent();
-
+            GetArtistList();
         }
-        // Connect Adapter/Connection: creating connection adapter
         public static NpgsqlConnection con;
-
-        // Command Adapter Execute Query: creating object of the command adapter
         public static NpgsqlCommand cmd;
-
+        List<Artist> artists;
 
         // ---------- Add Artist to Database ---------- //
         private void AddArtistBtn_Click(object sender, RoutedEventArgs e)
@@ -89,25 +87,24 @@ namespace cosmic_management_system.View.UserPage {
                         MessageBox.Show(ex.Message);
                     }
                 }
-            } else // If city is already in DB, insert address with city ID to DB
+            }
+            city_id = GetCityId(city);
+            Query = "INSERT INTO festival.address(address_line1, address_line2, district, postal, phone, city_id) " +
+                    "VALUES (@addressLine1, @address_line2, @district, @postal, @phone, @city_id)";
+            using (cmd = new NpgsqlCommand(Query, con))
             {
-                Query = "INSERT INTO festival.address(address_line1, address_line2, district, postal, phone, city_id) " +
-                        "VALUES (@addressLine1, @address_line2, @district, @postal, @phone, @city_id)";
-                using (cmd = new NpgsqlCommand(Query, con)) {
-                    cmd.Parameters.AddWithValue("@addressLine1", address_line1);
-                    cmd.Parameters.AddWithValue("@address_line2", address_line2);
-                    cmd.Parameters.AddWithValue("@district", district);
-                    cmd.Parameters.AddWithValue("@postal", postal);
-                    cmd.Parameters.AddWithValue("@phone", phone);
-                    cmd.Parameters.AddWithValue("@city_id", city_id);
-                    cmd.ExecuteNonQuery();
-                }
+                cmd.Parameters.AddWithValue("@addressLine1", address_line1);
+                cmd.Parameters.AddWithValue("@address_line2", address_line2);
+                cmd.Parameters.AddWithValue("@district", district);
+                cmd.Parameters.AddWithValue("@postal", postal);
+                cmd.Parameters.AddWithValue("@phone", phone);
+                cmd.Parameters.AddWithValue("@city_id", city_id);
+                cmd.ExecuteNonQuery();
             }
             con.Close();
 
             // Get address ID to insert into artist table as foreign key
             int address_id = GetAddressId(address_line1, city_id);
-            MessageBox.Show(address_id.ToString());
 
             con.Open();
             try
@@ -125,6 +122,10 @@ namespace cosmic_management_system.View.UserPage {
 
                     int rowsAffected = cmd.ExecuteNonQuery();
 
+                    Artist newArtist = new Artist();
+                    InitializeNewArtist(newArtist, dob);
+                    artists.Add(newArtist);
+
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Artist added");
@@ -139,6 +140,8 @@ namespace cosmic_management_system.View.UserPage {
                 MessageBox.Show(ex.Message);
             }
             con.Close();
+            GetArtistList();
+            DisplayArtistInfo(artists[artists.Count - 1]);
         }
 
         // ---------- Remove Artist From Database ---------- //
@@ -161,18 +164,28 @@ namespace cosmic_management_system.View.UserPage {
             EstablishConnection();
             con.Open();
 
-            string Query = "DELETE from festival.artist " +
-                           "WHERE first_name = @firstName " +
-                           "AND last_name = @lastName AND dob = @dob";
+            string delArtistQuery = "DELETE from festival.artist " +
+                                    "WHERE first_name = @firstName " +
+                                    "AND last_name = @lastName AND dob = @dob";
+
+            int addressId = GetAddressId(firstName, lastName, dob);
+            string delAddrQuery = "DELETE from festival.address " +
+                                  "WHERE address_id = @addressId";
             try
             {
-                using (cmd = new NpgsqlCommand(Query, con))
+                using (NpgsqlCommand delArtistCmd = new NpgsqlCommand(delArtistQuery, con))
                 {
-                    cmd.Parameters.AddWithValue("@firstName", firstName);
-                    cmd.Parameters.AddWithValue("@lastName", lastName);
-                    cmd.Parameters.AddWithValue("@dob", dob);
+                    delArtistCmd.Parameters.AddWithValue("@firstName", firstName);
+                    delArtistCmd.Parameters.AddWithValue("@lastName", lastName);
+                    delArtistCmd.Parameters.AddWithValue("@dob", dob);
+                    delArtistCmd.ExecuteNonQuery();
+                }
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                using (NpgsqlCommand delAddrCmd = new NpgsqlCommand(delAddrQuery, con))
+                {
+                    delAddrCmd.Parameters.AddWithValue("@addressId", addressId);
+
+                    int rowsAffected = delAddrCmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
@@ -189,7 +202,8 @@ namespace cosmic_management_system.View.UserPage {
                 MessageBox.Show(ex.Message);
             }
             con.Close();
-
+            ClearFields();
+            GetArtistList();
         }
 
         // ---------- Select Artist From Database ---------- //
@@ -263,6 +277,7 @@ namespace cosmic_management_system.View.UserPage {
         {
             string firstName = artistFirstNameBox.Text;
             string lastName = artistLastNameBox.Text;
+            Artist selectedArtist = artists[0];
 
             DateTime dob = DateTime.Now;
             try
@@ -274,6 +289,16 @@ namespace cosmic_management_system.View.UserPage {
                 MessageBox.Show(ex.Message);
 
             }
+
+            foreach (Artist artist in artists)
+            {
+                if (artist.FirstName == firstName)
+                {
+                    selectedArtist = artist;
+                    break;
+                }
+            }
+
             EstablishConnection();
             con.Open();
 
@@ -354,7 +379,7 @@ namespace cosmic_management_system.View.UserPage {
                                                  "    address_line2 = @addressLine2, " +
                                                  "    postal = @postal, " +
                                                  "    phone = @phone, " +
-                                                 "    district = @district " +
+                                                 "    district = @district, " +
                                                  "    city_id = @cityId " +
                                                  "WHERE address_id = @address_id";
 
@@ -365,15 +390,17 @@ namespace cosmic_management_system.View.UserPage {
                             updateAddrCmd.Parameters.AddWithValue("@postal", artistPostalBox.Text);
                             updateAddrCmd.Parameters.AddWithValue("@phone", artistPhoneBox.Text);
                             updateAddrCmd.Parameters.AddWithValue("@district", artistDistrictBox.Text);
+                            updateAddrCmd.Parameters.AddWithValue("@cityId", cityId);
                             updateAddrCmd.Parameters.AddWithValue("@address_id", addressId);
                             updateAddrCmd.ExecuteNonQuery();
                         }
                     }
                 }
 
-
+                InitializeNewArtist(selectedArtist, dob);
 
                 MessageBox.Show("Artist updated");
+
             }
             catch (NpgsqlException ex)
             {
@@ -382,18 +409,23 @@ namespace cosmic_management_system.View.UserPage {
             con.Close();
         }
 
+        private void ClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ClearFields();
+        }
 
-            // ------------------------------------------------------------- //
-            //                       HELPER FUNCTIONS                        //
-            // ------------------------------------------------------------- //
 
-            // Establish connection to DB
-            private void EstablishConnection()
+        // ------------------------------------------------------------- //
+        //                       HELPER FUNCTIONS                        //
+        // ------------------------------------------------------------- //
+
+        // Establish connection to DB
+        private void EstablishConnection()
         {
             try
             {
                 con = new NpgsqlConnection(GetConnectionString());
-                MessageBox.Show("Database Connection Established");
+               // MessageBox.Show("Database Connection Established");
             }
             catch (NpgsqlException ex) { 
                 MessageBox.Show(ex.Message);
@@ -514,6 +546,116 @@ namespace cosmic_management_system.View.UserPage {
                 }
             }
             return addressId;
+        }
+
+        private void ClearFields()
+        {
+            artistFirstNameBox.Text = "";
+            artistLastNameBox.Text = "";
+            artistStageNameBox.Text = "";
+            artistCountryBox.Text = "";
+            artistCityBox.Text = "";
+            artistPostalBox.Text = "";
+            artistAddress1Box.Text = "";
+            artistAddress2Box.Text = "";
+            artistDistrictBox.Text = "";
+            artistBiographyBox.Text = "";
+            artistPhoneBox.Text = "";
+            artistDobBox.Text = "";
+        }
+
+        private void DisplayArtistInfo(Artist artist)
+        {
+            if (ArtistListView.SelectedItem != null)
+            {
+                artistFirstNameBox.Text = artist.FirstName;
+                artistLastNameBox.Text = artist.LastName;
+                artistDobBox.SelectedDate = artist.Dob;
+                artistStageNameBox.Text = artist.StageName;
+                artistAddress1Box.Text = artist.AddressLine1;
+                artistAddress2Box.Text = artist.AddressLine2;
+                artistCityBox.Text = artist.City;
+                artistDistrictBox.Text = artist.District;
+                artistPostalBox.Text = artist.Postal;
+                artistCountryBox.Text = artist.Country;
+                artistPhoneBox.Text = artist.Phone;
+                artistBiographyBox.Text = artist.Biography;
+            }
+        }
+
+        private List<Artist> GetArtistList()
+        {
+            EstablishConnection();
+            con.Open();
+
+            string Query = "SELECT first_name, " +
+                           "       last_name, " +
+                           "       stage_name, " +
+                           "       dob, " +
+                           "       address_line1, " +
+                           "       address_line2, " +
+                           "       city, " +
+                           "       district, " +
+                           "       postal, " +
+                           "       country, " +
+                           "       phone, " +
+                           "       biography " +
+                           "FROM festival.artist " +
+                           "INNER JOIN festival.address a on artist.address_id = a.address_id " +
+                           "INNER JOIN festival.city c on c.city_id = a.city_id " +
+                           "INNER JOIN festival.country c2 on c.country_id = c2.country_id";
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(Query, con)) 
+            { 
+                using (NpgsqlDataReader reader =  cmd.ExecuteReader())
+                {
+                    artists = new List<Artist>();
+
+                    while (reader.Read())
+                    {
+                        artists.Add(new Artist()
+                        {
+                            FirstName = reader.GetString(0),
+                            LastName = reader.GetString(1),
+                            StageName = reader.GetString(2),
+                            Dob = reader.GetDateTime(3),
+                            AddressLine1 = reader.GetString(4),
+                            AddressLine2 = reader.GetString(5),
+                            City = reader.GetString(6),
+                            District = reader.GetString(7),
+                            Postal = reader.GetString(8),
+                            Country = reader.GetString(9),
+                            Phone = reader.GetString(10),
+                            Biography = reader.GetString(11),
+                        });
+                    }
+                    ArtistListView.ItemsSource = artists;
+                }
+                return artists;
+            }
+
+        }
+
+        private void ArtistListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DisplayArtistInfo(ArtistListView.SelectedItem as Artist);
+
+        }
+
+        private void InitializeNewArtist(Artist artist, DateTime dob)
+        {
+            artist.FirstName = artistFirstNameBox.Text;
+            artist.LastName = artistLastNameBox.Text;
+            artist.StageName = artistStageNameBox.Text;
+            artist.Dob = dob;
+            artist.AddressLine1 = artistAddress1Box.Text;
+            artist.AddressLine2 = artistAddress2Box.Text;
+            artist.City = artistCityBox.Text;
+            artist.District = artistDistrictBox.Text;
+            artist.Postal = artistPostalBox.Text;
+            artist.Country = artistCountryBox.Text;
+            artist.Phone = artistPhoneBox.Text;
+            artist.Biography = artistBiographyBox.Text;
         }
     }
 }
