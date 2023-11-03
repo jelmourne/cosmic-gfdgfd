@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         AllowsTransparency="True"
         d:FontFamily="Corbel"
-        Title="Cosmic Management" d:Height="580" d:Width="800"
+        Title="Cosmic Management" d:Height="auto" d:Width="800"
         UseLayoutRounding="True">
 
     <WindowChrome.WindowChrome>
