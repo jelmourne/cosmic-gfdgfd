@@ -132,3 +132,10 @@ C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\System.
 C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\cosmic-management-system.csproj.CopyComplete
 C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\AttendeesPage.g.cs
 C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\View\UserPage\AttendeesPage.baml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\Newtonsoft.Json.Bson.dll
+C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\Newtonsoft.Json.Bson.pdb
+C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\Newtonsoft.Json.Bson.xml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\bin\Debug\System.Net.Http.Formatting.xml

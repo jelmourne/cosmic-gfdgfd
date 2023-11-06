@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using cosmic_management_system.View.UserPage;
+using cosmic_management_system.Models;
 
 
 namespace cosmic_management_system {
@@ -21,26 +22,12 @@ namespace cosmic_management_system {
     /// </summary>
     public partial class MainWindow : Window {
         public MainWindow() {
-            
             InitializeComponent();
-            User user = new User();
-            user.name = "Justin";
-            user.admin = true;
-
-            if(user.name != null) {
-                if (user.name.Length > 10) {
-                    UserId.Text = "Hi, "+user.name.Substring(0, 10);
-                }
-                else {
-                    UserId.Text = "Hi, " + user.name;
-                }
-
-                var IsAdmin = (user.admin == true) ? AccountType.Text = "Admin" : AccountType.Text = "User";
-            }
-            else {
-                UserId.Text = "Login";
-            }
-            MainPage.Content = new HomePage();
+           
+                MainPage.Content = new LoginPage();
+          
+            
+            
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {
@@ -78,9 +65,5 @@ namespace cosmic_management_system {
         private void VendorsButton_Click(object sender, RoutedEventArgs e) {
             MainPage.Content = new VendorPage();
         }
-    }
-    public class User {
-        public string name { get; set; }
-        public bool admin {  get; set; }
     }
 }
