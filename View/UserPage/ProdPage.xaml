@@ -29,10 +29,10 @@
             <ColumnDefinition Width="256*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView x:Name="StageListView" Margin="7,8,14,13" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="4" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1">
+        <ListView x:Name="StageListView" Margin="7,8,14,13" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="4" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" IsSynchronizedWithCurrentItem="True" SelectionChanged="StageListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="200" Header="Stages" DisplayMemberBinding="{Binding LastName}"/>
+                    <GridViewColumn Width="200" Header="Stages" DisplayMemberBinding="{Binding name}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -40,7 +40,7 @@
         <ListView x:Name="StageProdListView" Margin="7,8,13,5" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="3" Grid.Row="5" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="200" Header="Stage Production Requirements" DisplayMemberBinding="{Binding LastName}"/>
+                    <GridViewColumn Width="200" Header="Stage Production Requirements" DisplayMemberBinding="{Binding ProductionName}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -79,10 +79,10 @@
             <Button x:Name="clearBtn"  Content="Clear" Height="22.5"/>
         </StackPanel>
 
-        <ListView x:Name="ProductionListView" Margin="7,8,13,5" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="4" Grid.Row="4" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="3">
+        <ListView x:Name="ProductionListView" Margin="7,8,13,5" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="4" Grid.Row="4" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="3" IsSynchronizedWithCurrentItem="True">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="200" Header="Production List" DisplayMemberBinding="{Binding LastName}"/>
+                    <GridViewColumn Width="200" Header="Production List" DisplayMemberBinding="{Binding ProductionName}"/>
                 </GridView>
             </ListView.View>
         </ListView>

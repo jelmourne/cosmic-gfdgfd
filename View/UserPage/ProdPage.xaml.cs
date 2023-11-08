@@ -26,6 +26,7 @@ namespace cosmic_management_system.View.UserPage {
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json") );
             InitializeComponent();
+            DisplayAllStages();
         }
 
         private async void addStageBtn_Click(object sender, RoutedEventArgs e)
@@ -66,6 +67,18 @@ namespace cosmic_management_system.View.UserPage {
             
         }
 
+        private async void DisplayAllStages()
+        {
+            var server_response = await client.GetStringAsync("Stage/GetAllStages");
+
+            StageResponse response_json = JsonConvert.DeserializeObject<StageResponse>(server_response);
+
+            List<Stage> stages = new List<Stage>();
+            stages = response_json.stages;
+            StageListView.ItemsSource = stages;
+            DataContext = this;
+        } 
+
         private void addToProdListBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -80,6 +93,22 @@ namespace cosmic_management_system.View.UserPage {
             Response response_json = JsonConvert.DeserializeObject<Response>(server_response);
 
             MessageBox.Show(server_response);
+        }
+
+        private void StageListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DisplayStageInfo(StageListView.SelectedItem as Stage);
+        }
+
+        private void DisplayStageInfo(Stage stage)
+        {
+            if (StageListView.SelectedItem != null)
+            {
+                stageNameBox.Text = stage.name;
+                stageIdBox.Text = stage.id.ToString();
+                stageGenreBox.Text = stage.genre;
+                stageSizeBox.Text = stage.size;
+            }
         }
     }
 }
