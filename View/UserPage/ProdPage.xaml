@@ -29,7 +29,7 @@
             <ColumnDefinition Width="256*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView x:Name="StageListView" Margin="7,8,14,13" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="4" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="AttendeeListView_SelectionChanged" Grid.Column="1">
+        <ListView x:Name="StageListView" Margin="7,8,14,13" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="4" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="200" Header="Stages" DisplayMemberBinding="{Binding LastName}"/>
@@ -37,7 +37,7 @@
             </ListView.View>
         </ListView>
 
-        <ListView x:Name="StageProdListView" Margin="7,8,13,5" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="3" Grid.Row="5" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="AttendeeListView_SelectionChanged" Grid.Column="1">
+        <ListView x:Name="StageProdListView" Margin="7,8,13,5" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="3" Grid.Row="5" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="200" Header="Stage Production Requirements" DisplayMemberBinding="{Binding LastName}"/>
@@ -73,10 +73,10 @@
             <Button x:Name="addToProdListBtn"  Content="Add Prod Item To List" Height="22.5"/>
             <Button x:Name="removeProdListBtn"  Content="Remove Prod Item From List" Height="22.5"/>
             <Button x:Name="updateProdItem"  Content="Update Prod Item" Height="22.5"/>
-            <Button x:Name="clearBtn"  Content="Clear" Click="ClearBtn_Click" Height="22.5"/>
+            <Button x:Name="clearBtn"  Content="Clear" Height="22.5"/>
         </StackPanel>
 
-        <ListView x:Name="ProductionListView" Margin="7,8,13,5" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="4" Grid.Row="4" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="AttendeeListView_SelectionChanged" Grid.Column="3">
+        <ListView x:Name="ProductionListView" Margin="7,8,13,5" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="4" Grid.Row="4" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="200" Header="Production List" DisplayMemberBinding="{Binding LastName}"/>

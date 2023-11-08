@@ -13,7 +13,7 @@
         UseLayoutRounding="True">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0"/>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="15" CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
 
     <Grid>
@@ -32,7 +32,12 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Rectangle Grid.Column="0" Fill="DarkGray" Width="200" Grid.RowSpan="9"></Rectangle>
+        <Border Grid.Column="0" Grid.RowSpan="9">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5"></DropShadowEffect >
+            </Border.Effect>
+            <Rectangle Fill="#A882D9" Width="200" ></Rectangle>
+        </Border>
         <UserControl:NavBar Grid.Column="1" Grid.Row="0"></UserControl:NavBar>
         <TextBlock x:Name="AccountType" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" Margin="10" Opacity="0.4"></TextBlock>
         <UserControl:NavButton Grid.Row="1" Title="HOME" Image="Resource/house.png" Height="40" Margin="7" HorizontalAlignment="Left" Click="HomeButton_Click"></UserControl:NavButton>
