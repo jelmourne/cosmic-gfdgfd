@@ -40,7 +40,6 @@ C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\De
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserControls\NavBar.g.cs
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserControls\NavButton.g.cs
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\ArtistsPage.g.cs
-C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\AttendiesPage.g.cs
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\HomePage.g.cs
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\LoginPage.g.cs
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\MapPage.g.cs
@@ -55,7 +54,6 @@ C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\De
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserControls\NavBar.baml
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserControls\NavButton.baml
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\ArtistsPage.baml
-C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\AttendiesPage.baml
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\HomePage.baml
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\LoginPage.baml
 C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\MapPage.baml
@@ -213,3 +211,12 @@ C:\Users\Tristan\Desktop\cosmic-management-system\obj\Debug\cosmic-management-sy
 C:\Users\Tristan\Desktop\cosmic-management-system\obj\Debug\cosmic-management-system.csproj.CopyComplete
 C:\Users\Tristan\Desktop\cosmic-management-system\obj\Debug\cosmic-management-system.exe
 C:\Users\Tristan\Desktop\cosmic-management-system\obj\Debug\cosmic-management-system.pdb
+C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\bin\Debug\Newtonsoft.Json.Bson.dll
+C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\bin\Debug\Newtonsoft.Json.Bson.pdb
+C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\bin\Debug\Newtonsoft.Json.Bson.xml
+C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\AttendeesPage.g.cs
+C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\View\UserPage\AttendeesPage.baml
