@@ -7,8 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="40" d:Width="600">
     <Grid>
-        <Rectangle Fill="LightGray"></Rectangle>
+        <Border>
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="2" BlurRadius="7" Color="Black" Direction="270" Opacity="0.5"></DropShadowEffect >
+        </Border.Effect>
+        <Rectangle Fill="#F2EAD3"></Rectangle>
+            
+        </Border>
         <Border BorderThickness="1" CornerRadius="16" BorderBrush="SlateGray" Width="200" HorizontalAlignment="Left" Margin="2">
+         
             <StackPanel Orientation="Horizontal">
                 <Image Source="/Resource/magnifying.png" Height="16" Margin="5"  RenderOptions.EdgeMode="Aliased"></Image>
                 <TextBlock Text="Search" VerticalAlignment="Center"></TextBlock>
