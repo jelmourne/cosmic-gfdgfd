@@ -117,6 +117,7 @@
     <Compile Include="Models\Production.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Stage.cs" />
+    <Compile Include="Models\StageResponse.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="View\UserControls\NavBar.xaml.cs">
       <DependentUpon>NavBar.xaml</DependentUpon>
