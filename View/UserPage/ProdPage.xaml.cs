@@ -39,5 +39,6 @@ namespace cosmic_management_system.View.UserPage {
 
             MessageBox.Show(server_response.ToString());
         }
+
     }
 }
