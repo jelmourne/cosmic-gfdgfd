@@ -9,6 +9,6 @@ namespace cosmic_management_system.Models {
         public int status { get; set; }
         public string message { get; set; }
         public object body { get; set; }
-        public List<object> data { get; set; }
+        public List<Production> data { get; set; }
     }
 }
