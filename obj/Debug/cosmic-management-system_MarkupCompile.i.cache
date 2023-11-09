@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\obj\Debug\
+C:\Users\Justin\Documents\Programming\cosmic-management-system\obj\Debug\
 cosmic_management_system
 none
 false
 DEBUG;TRACE
-C:\Users\Tristan\Desktop\Application Development\cosmic-management-system\App.xaml
+C:\Users\Justin\Documents\Programming\cosmic-management-system\App.xaml
 11-218958957
 
-231006488482
-33-1976306204
+211708761339
+33-901053860
 MainWindow.xaml;View\UserControls\NavBar.xaml;View\UserControls\NavButton.xaml;View\UserPage\ArtistsPage.xaml;View\UserPage\AttendeesPage.xaml;View\UserPage\HomePage.xaml;View\UserPage\LoginPage.xaml;View\UserPage\MapPage.xaml;View\UserPage\ProdPage.xaml;View\UserPage\SchedulePage.xaml;View\UserPage\VendorPage.xaml;
 
 True
