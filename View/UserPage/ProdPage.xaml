@@ -5,10 +5,88 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:cosmic_management_system.View.UserPage"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="560" d:DesignWidth="800"
       Title="ProdPage">
 
-    <Grid>
-        <TextBlock Text="page 6"></TextBlock>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="235*"/>
+            <ColumnDefinition Width="288*"/>
+            <ColumnDefinition Width="256*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView x:Name="StageListView" Margin="7,8,14,13" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="4" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" IsSynchronizedWithCurrentItem="True" SelectionChanged="StageListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="200" Header="Stages" DisplayMemberBinding="{Binding name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name="StageProdListView" Margin="7,8,13,5" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="3" Grid.Row="5" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="200" Header="Stage Production Requirements" DisplayMemberBinding="{Binding ProductionName}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <Label Grid.Column="2" Content="Name*" HorizontalAlignment="Left" Margin="4,3,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="70"/>
+        <TextBox x:Name="stageNameBox" Grid.Column="2" HorizontalAlignment="Left" Margin="7,28,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="228" Height="28" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="id" HorizontalAlignment="Left" Margin="251,2,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="27"/>
+        <TextBox x:Name="stageIdBox" Grid.Column="2" HorizontalAlignment="Left" Margin="248,28,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="26" Height="28" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="Genre" HorizontalAlignment="Left" Margin="4,7,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="77"/>
+        <TextBox x:Name="stageGenreBox" Grid.Column="2" HorizontalAlignment="Center" Margin="0,32,0,0" Grid.Row="2" TextWrapping="Wrap"  VerticalAlignment="Top" Width="273" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="Size" HorizontalAlignment="Left" Margin="8,5,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="77"/>
+        <TextBox x:Name="stageSizeBox" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap"  VerticalAlignment="Center" Width="268" Height="30" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="Location" HorizontalAlignment="Left" Margin="4,2,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="89"/>
+        <TextBox x:Name="stageLocationBox" Grid.Column="2" HorizontalAlignment="Center" Margin="0,27,0,0" Grid.Row="4" TextWrapping="Wrap"  VerticalAlignment="Top" Width="274" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="Production Item" HorizontalAlignment="Left" Margin="4,2,0,0" Grid.Row="5" VerticalAlignment="Top" Height="26" Width="97"/>
+        <TextBox x:Name="productionItemBox" Grid.Column="2" HorizontalAlignment="Center" Margin="0,27,0,0" Grid.Row="5" TextWrapping="Wrap"  VerticalAlignment="Top" Width="274" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="Production Description" HorizontalAlignment="Left" Margin="4,2,0,0" Grid.Row="6" VerticalAlignment="Top" Height="26" Width="135"/>
+        <TextBox x:Name="productionDescriptionBox" Grid.Column="2" HorizontalAlignment="Center" Margin="0,27,0,0" Grid.Row="6" TextWrapping="Wrap"  VerticalAlignment="Top" Width="274" Height="108" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC" Grid.RowSpan="2"/>
+
+        <StackPanel Grid.Column="3" Margin="26,6,26,11" Grid.RowSpan="3" Grid.Row="1">
+            <Button x:Name="addStageBtn"  Content="Add Stage" Height="22.5" Click="addStageBtn_Click"/>
+            <Button x:Name="deleteStageBtn"  Content="Delete Stage" Height="22.5" Click="deleteStageBtn_Click"/>
+            <Button x:Name="updateStageBtn"  Content="Update Stage" Height="22.5" Click="updateStageBtn_Click"/>
+            <Button x:Name="addStageProdBtn"  Content="Add Prod To Stage" Height="22.5"/>
+            <Button x:Name="removeStageProdBtn"  Content="Remove Prod From Stage" Height="22.5"/>
+            <Button x:Name="addToProdListBtn"  Content="Add Prod Item To List" Height="22.5" Click="addToProdListBtn_Click"/>
+            <Button x:Name="removeProdListBtn"  Content="Remove Prod Item From List" Height="22.5"/>
+            <Button x:Name="updateProdItem"  Content="Update Prod Item" Height="22.5"/>
+            <Button x:Name="clearBtn"  Content="Clear" Height="22.5"/>
+        </StackPanel>
+
+        <ListView x:Name="ProductionListView" Margin="7,8,13,5" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="4" Grid.Row="4" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="3" IsSynchronizedWithCurrentItem="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="200" Header="Production List" DisplayMemberBinding="{Binding ProductionName}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
+
 </Page>

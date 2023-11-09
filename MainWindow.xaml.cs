@@ -43,7 +43,7 @@ namespace cosmic_management_system {
         }
 
         private void AttendeesButton_Click(object sender, RoutedEventArgs e) {
-            MainPage.Content = new AttendiesPage();
+            MainPage.Content = new AttendeesPage();
         }
 
         private void ArtistButton_Click(object sender, RoutedEventArgs e) {

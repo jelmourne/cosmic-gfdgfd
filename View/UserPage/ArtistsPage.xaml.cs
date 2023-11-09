@@ -371,8 +371,9 @@ namespace cosmic_management_system.View.UserPage {
                                 MessageBox.Show(ex.Message);
                             }
                         }
-               
-                    } else // If city already exists in DB
+
+                    }
+                    else // If city already exists in DB
                     {
                         string updateAddrQuery = "UPDATE festival.address " +
                                                  "SET address_line1 = @addressLine1, " +
@@ -396,7 +397,6 @@ namespace cosmic_management_system.View.UserPage {
                         }
                     }
                 }
-
                 InitializeNewArtist(selectedArtist, dob);
 
                 MessageBox.Show("Artist updated");
@@ -639,7 +639,6 @@ namespace cosmic_management_system.View.UserPage {
         private void ArtistListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DisplayArtistInfo(ArtistListView.SelectedItem as Artist);
-
         }
 
         private void InitializeNewArtist(Artist artist, DateTime dob)
