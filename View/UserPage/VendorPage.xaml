@@ -9,6 +9,58 @@
       Title="VendorPage">
 
     <Grid>
-        <TextBlock Text="page 7"></TextBlock>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="235*"/>
+            <ColumnDefinition Width="288*"/>
+            <ColumnDefinition Width="256*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView x:Name="VendorListView" Margin="20,8,20,8" BorderBrush="#FFD7DBDC" Foreground="#FF042271" Grid.RowSpan="7" Grid.Row="1" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding name}"/>
+                    <GridViewColumn Width="100" Header="Type" DisplayMemberBinding="{Binding type}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label Grid.Column="2" Content="Name*" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Margin="0,16,0,0"/>
+        <TextBox x:Name="vendorNameBox" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" Margin="7,32,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Bottom" Width="274" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC" />
+
+        <Label Grid.Column="2" Content="Type*" HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top" Margin="0,16,0,0"/>
+        <TextBox x:Name="vendorTypeBox" Grid.Column="2" HorizontalAlignment="Left"  Grid.Row="2" Margin="7,32,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Bottom" Width="274" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="Address line 1*" HorizontalAlignment="Left" Margin="4,7,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="89"/>
+        <TextBox x:Name="attenAddress1Box" Grid.Column="2" HorizontalAlignment="Center" Margin="0,32,0,0" Grid.Row="3" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="274" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="Address line 2" HorizontalAlignment="Left" Margin="4,7,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="84"/>
+        <TextBox x:Name="attenAddress2Box" Grid.Column="2" HorizontalAlignment="Center" Margin="0,32,0,0" Grid.Row="4" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="274" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="City" HorizontalAlignment="Left" Margin="4,7,0,0" Grid.Row="5" VerticalAlignment="Top" Height="26" Width="84"/>
+        <TextBox x:Name="attenCityBox" Grid.Column="2" HorizontalAlignment="Left" Margin="3,31,0,0" Grid.Row="5" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="85" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="Country" HorizontalAlignment="Center" Margin="0,6,0,0" Grid.Row="5" VerticalAlignment="Top" Height="26" Width="84"/>
+        <TextBox x:Name="attenCountryBox" Grid.Column="2" HorizontalAlignment="Center" Margin="0,31,0,0" Grid.Row="5" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="85" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Label Grid.Column="2" Content="Postal Code" HorizontalAlignment="Right" Margin="0,6,0,0" Grid.Row="5" VerticalAlignment="Top" Height="26" Width="84"/>
+        <TextBox x:Name="attenPostalBox" Grid.Column="2" HorizontalAlignment="Right" Margin="0,31,0,0" Grid.Row="5" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="85" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
+
+        <Button x:Name="addAttenBtn" Grid.Column="3" Content="Add Vendor" HorizontalAlignment="Left" Margin="20,17,0,0" Grid.Row="1" VerticalAlignment="Top" Height="82" Width="222" Grid.RowSpan="2" Click="addVendorBtn_Click"/>
+        <Button x:Name="deleteAttenBtn" Grid.Column="3" Content="Delete Vendor" HorizontalAlignment="Left" Margin="20,7,0,0" Grid.Row="3" VerticalAlignment="Top" Height="83" Width="222" Grid.RowSpan="2" />
+        <Button x:Name="updateAttenBtn" Grid.Column="3" Content="Update Vendor" HorizontalAlignment="Left" Margin="20,46,0,0" Grid.Row="4" VerticalAlignment="Top" Height="82" Width="222" Grid.RowSpan="2"/>
     </Grid>
 </Page>

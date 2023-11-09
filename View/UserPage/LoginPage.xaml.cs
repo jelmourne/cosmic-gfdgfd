@@ -38,9 +38,9 @@ namespace cosmic_management_system.View.UserPage {
             user.Password = Password.Text;
             user.Admin = false;
 
-            var server_response = await client.PostAsJsonAsync("loginUser", user);
-            Response response_json = JsonConvert.DeserializeObject<Response>(server_response.ToString());
-            MessageBox.Show(response_json.ToString());
+            var server_response = await client.PostAsJsonAsync("loginUser",user);   
+            Response<User> response_json = JsonConvert.DeserializeObject<Response<User>>(server_response.ToString());
+            MessageBox.Show(response_json + " ");
            
         }
     }
