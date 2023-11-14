@@ -8,7 +8,10 @@
              x:Name="Root"
              >
     <Grid>
-        <Button Click="Button_Click" Background="Transparent" BorderThickness="0">
+        <Button Click="Button_Click" Background="Transparent" BorderThickness="0,0,0,0.6">
+            <Button.BorderBrush>
+                <SolidColorBrush Color="Black" Opacity="0.2"></SolidColorBrush>
+            </Button.BorderBrush>
             <StackPanel Orientation="Horizontal" Width="175">
                 <Image Source="{Binding Image, ElementName=Root}" Margin="0,0,10,0" Width="16" RenderOptions.EdgeMode="Aliased" Opacity="0.7"></Image>
                 <TextBlock Text="{Binding Title, ElementName=Root}" FontSize="16" VerticalAlignment="Center"></TextBlock>

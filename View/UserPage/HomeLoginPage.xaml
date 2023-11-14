@@ -1,28 +1,28 @@
-﻿<Page x:Class="cosmic_management_system.View.UserPage.HomePage"
+﻿<Page x:Class="cosmic_management_system.View.UserPage.HomeLoginPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:cosmic_management_system.View.UserPage"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="600"
-      Title="HomePage">
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HomeLoginPage">
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontWeight="SemiBold" Text="Welcome To "  FontSize="60"></TextBlock>
-                <TextBlock FontWeight="SemiBold" Foreground="#A882D9" Text="Cosmic"  FontSize="60"></TextBlock>
+                <TextBlock FontWeight="SemiBold" Text="Welcome To Cosmic, "  FontSize="60"></TextBlock>
+                <TextBlock FontWeight="SemiBold" x:Name="username" Foreground="#A882D9" FontSize="60"></TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Please Login to Continue, "  VerticalAlignment="Center" FontSize="40"></TextBlock>
+                <TextBlock Text="Use The App or Signout Here, "  VerticalAlignment="Center" FontSize="40"></TextBlock>
                 <Button Background="#A882D9" Foreground="White" VerticalAlignment="Center" FontSize="30" Click="Button_Click">
                     <Button.BorderBrush>
                         <SolidColorBrush Color="Black" Opacity="0.2"></SolidColorBrush>
-                    </Button.BorderBrush> 
-                    Login</Button>
+                    </Button.BorderBrush>
+                    Logout
+                </Button>
             </StackPanel>
         </StackPanel>
-        
     </Grid>
 </Page>

@@ -22,26 +22,35 @@ namespace cosmic_management_system.View.UserPage {
     /// </summary>
     public partial class LoginPage : Page {
 
+        private MainWindow mainWindow;
+
         HttpClient client = new HttpClient();
-        public LoginPage() {
+        public LoginPage(MainWindow mainWindow) {
             client.BaseAddress = new Uri("https://localhost:7211/Production/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             InitializeComponent();
+            this.mainWindow = mainWindow;
         }
 
-        private async void Login_Button(object sender, RoutedEventArgs e) {
-            User user = new User();
-            user.Id = 0;
-            user.Name = "";
-            user.Username = Username.Text;
-            user.Password = Password.Text;
-            user.Admin = false;
 
-            var server_response = await client.PostAsJsonAsync("loginUser",user);   
-            Response<User> response_json = JsonConvert.DeserializeObject<Response<User>>(server_response.ToString());
-            MessageBox.Show(response_json + " ");
-           
+        private async void Login_Button(object sender, RoutedEventArgs e) {
+            var server_response = await client.GetStringAsync("loginUser/"+Username.Text);   
+            Response<User> response_json = JsonConvert.DeserializeObject<Response<User>>(server_response);
+            if(response_json.status == 200) {
+                User user = new User();
+                if (response_json.body.Password == Password.Text) {
+                    user.Id = response_json.body.Id;
+                    user.Username = response_json.body.Username;
+                    user.Admin = response_json.body.Admin;
+                    user.Name = response_json.body.Name;
+                    user.Password = response_json.body.Password;
+                    mainWindow.updateUser(user);
+                }
+                else {
+                    MessageBox.Show("Invalid Username or Password");
+                }
+            }      
         }
     }
 }

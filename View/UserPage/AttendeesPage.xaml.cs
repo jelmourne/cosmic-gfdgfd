@@ -421,10 +421,10 @@ namespace cosmic_management_system.View.UserPage {
         // Generate connection string for DB
         private string GetConnectionString() {
             string host = "Host=localhost;";
-            string port = "Port=5433;";
-            string dbName = "Database=cosmic_management;";
+            string port = "Port=5432;";
+            string dbName = "Database=cosmic-management;";
             string userName = "Username=postgres;";
-            string password = "Password=1234;";
+            string password = "Password=Bruce-12;";
             string connectionString = string.Format("{0}{1}{2}{3}{4}", host, port, dbName, userName, password);
             return connectionString;
         }

@@ -18,8 +18,15 @@ namespace cosmic_management_system.View.UserPage {
     /// Interaction logic for HomePage.xaml
     /// </summary>
     public partial class HomePage : Page {
-        public HomePage() {
+        private MainWindow mainWindow;
+        public HomePage(MainWindow mainWindow) {
             InitializeComponent();
+            this.mainWindow = mainWindow;
+        }
+       
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            mainWindow.updateFrame(new LoginPage(mainWindow));
         }
     }
 }

@@ -18,12 +18,18 @@ namespace cosmic_management_system.View.UserControls {
     /// Interaction logic for NavBar.xaml
     /// </summary>
     public partial class NavBar : UserControl {
+
+
         public NavBar() {
             InitializeComponent();
+
+ 
         }
 
         private void Shutdown_Click(object sender, RoutedEventArgs e) {
             System.Windows.Application.Current.Shutdown();
         }
+
+     
     }
 }

@@ -21,7 +21,7 @@ namespace cosmic_management_system.View.UserPage {
     public partial class ProdPage : Page {
         HttpClient client = new HttpClient();
         public ProdPage() {
-            client.BaseAddress = new Uri("https://localhost:7211/");
+            client.BaseAddress = new Uri("https://localhost:7211/Production/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json") );
@@ -37,7 +37,7 @@ namespace cosmic_management_system.View.UserPage {
             stage.genre = stageGenreBox.Text;
             stage.size = stageSizeBox.Text;
 
-            var server_response = await client.PostAsJsonAsync("Stage/AddStage", stage);
+            var server_response = await client.PostAsJsonAsync("AddStage", stage);
 
             MessageBox.Show(server_response.ToString());
         }
@@ -45,7 +45,7 @@ namespace cosmic_management_system.View.UserPage {
         private async void deleteStageBtn_Click(object sender, RoutedEventArgs e)
         {
             {
-                var server_response = await client.DeleteAsync("Stage/DeleteStage/" + stageNameBox.Text);
+                var server_response = await client.DeleteAsync("DeleteStage/" + stageNameBox.Text);
 
                 MessageBox.Show(server_response.ToString());
                 stageNameBox.Text = "";
@@ -61,7 +61,7 @@ namespace cosmic_management_system.View.UserPage {
             stage.genre = stageGenreBox.Text;
             stage.size = stageSizeBox.Text;
 
-            var server_response = await client.PutAsJsonAsync("Stage/UpdateStage", stage);
+            var server_response = await client.PutAsJsonAsync("UpdateStage", stage);
 
             MessageBox.Show(server_response.ToString());
             
@@ -69,7 +69,7 @@ namespace cosmic_management_system.View.UserPage {
 
         private async void DisplayAllStages()
         {
-            var server_response = await client.GetStringAsync("Stage/GetAllStages");
+            var server_response = await client.GetStringAsync("GetAllStages");
 
             StageResponse response_json = JsonConvert.DeserializeObject<StageResponse>(server_response);
 
@@ -88,9 +88,9 @@ namespace cosmic_management_system.View.UserPage {
         {
             Stage stage = new Stage();
 
-            var server_response = await client.GetStringAsync("/Stage/GetStageByName/" + stageNameBox.Text);
+            var server_response = await client.GetStringAsync("GetStageByName/" + stageNameBox.Text);
 
-            Response response_json = JsonConvert.DeserializeObject<Response>(server_response);
+            Response<Stage> response_json = JsonConvert.DeserializeObject<Response<Stage>>(server_response);
 
             MessageBox.Show(server_response);
         }

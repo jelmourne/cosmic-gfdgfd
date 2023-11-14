@@ -59,8 +59,8 @@
         <Label Grid.Column="2" Content="Postal Code" HorizontalAlignment="Right" Margin="0,6,0,0" Grid.Row="5" VerticalAlignment="Top" Height="26" Width="84"/>
         <TextBox x:Name="attenPostalBox" Grid.Column="2" HorizontalAlignment="Right" Margin="0,31,0,0" Grid.Row="5" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="85" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC"/>
 
-        <Button x:Name="addAttenBtn" Grid.Column="3" Content="Add Vendor" HorizontalAlignment="Left" Margin="20,17,0,0" Grid.Row="1" VerticalAlignment="Top" Height="82" Width="222" Grid.RowSpan="2" Click="addVendorBtn_Click"/>
-        <Button x:Name="deleteAttenBtn" Grid.Column="3" Content="Delete Vendor" HorizontalAlignment="Left" Margin="20,7,0,0" Grid.Row="3" VerticalAlignment="Top" Height="83" Width="222" Grid.RowSpan="2" />
-        <Button x:Name="updateAttenBtn" Grid.Column="3" Content="Update Vendor" HorizontalAlignment="Left" Margin="20,46,0,0" Grid.Row="4" VerticalAlignment="Top" Height="82" Width="222" Grid.RowSpan="2"/>
+        <Button x:Name="addAttenBtn" Grid.Column="3" Content="Add Vendor" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="50" Width="222" Click="addVendorBtn_Click"/>
+        <Button x:Name="deleteAttenBtn" Grid.Column="3" Content="Delete Vendor" HorizontalAlignment="Center"  Grid.Row="3" VerticalAlignment="Top" Height="50" Width="222" Click="deleteAttenBtn_Click"/>
+        <Button x:Name="updateAttenBtn" Grid.Column="3" Content="Update Vendor" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Top" Height="50" Width="222" Click="updateAttenBtn_Click" />
     </Grid>
 </Page>

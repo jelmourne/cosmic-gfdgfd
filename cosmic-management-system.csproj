@@ -132,14 +132,14 @@
     <Compile Include="View\UserPage\AttendeesPage.xaml.cs">
       <DependentUpon>AttendeesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UserPage\HomeLoginPage.xaml.cs">
+      <DependentUpon>HomeLoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserPage\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserPage\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserPage\MapPage.xaml.cs">
-      <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserPage\ProdPage.xaml.cs">
       <DependentUpon>ProdPage.xaml</DependentUpon>
@@ -178,15 +178,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\UserPage\HomeLoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UserPage\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserPage\LoginPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserPage\MapPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

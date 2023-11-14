@@ -21,25 +21,42 @@ namespace cosmic_management_system {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+        public User user { get; set; } = new User();
+
         public MainWindow() {
             InitializeComponent();
-           
-                MainPage.Content = new LoginPage();
-          
-            
-            
+            MainPage.Navigate(new HomePage(this));
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {
-            
+       public void updateUser(User user) {
+            AccountType.Text = user.Admin == true ? "Admin" : "User";
+            UserId.Text = "Hi, "+user.Name;
+            this.user = user;
+            MainPage.Navigate(new HomeLoginPage(this));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
+        public void signOut() {
+            AccountType.Text = "";
+            UserId.Text = "Please Login";
+            user = new User();
+            MainPage.Navigate(new HomePage(this));
+        }
 
+        public void updateFrame(Page page) {
+            MainPage.Navigate(page);
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e) {
+            MainPage.Navigate(new LoginPage(this));
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e) {
-            MainPage.Content = new HomePage();
+            if(user.Username != null) {
+                MainPage.Navigate(new HomeLoginPage(this));
+            }
+            else {
+                MainPage.Navigate(new HomePage(this));
+            }
         }
 
         private void AttendeesButton_Click(object sender, RoutedEventArgs e) {
@@ -50,9 +67,6 @@ namespace cosmic_management_system {
             MainPage.Content = new ArtistsPage();
         }
 
-        private void MapButton_Click(object sender, RoutedEventArgs e) {
-            MainPage.Content = new MapPage();
-        }
 
         private void ScheduleButton_Click(object sender, RoutedEventArgs e) {
             MainPage.Content = new SchedulePage();

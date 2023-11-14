@@ -17,10 +17,10 @@
                 <TextBlock Text="Cosmic Management" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold" Foreground="#A882D9"></TextBlock>
     
                 <Label Content="Username" Height="26" Width="70" VerticalAlignment="Center"/>
-                <TextBox x:Name="Username" TextWrapping="Wrap" Text=" " Width="190" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC" VerticalAlignment="Center"/>
+                <TextBox x:Name="Username" TextWrapping="Wrap" Text="" Width="190" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC" VerticalAlignment="Center"/>
 
                 <Label Content="Password" Height="26" Width="70" VerticalAlignment="Center"/>
-                <TextBox x:Name="Password" TextWrapping="Wrap" Text=" " Width="190" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC" VerticalAlignment="Center"/>
+                <TextBox x:Name="Password" TextWrapping="Wrap" Text="" Width="190" Height="29" FontSize="14" Padding="0,3,0,0" BorderBrush="#FFD7DBDC" VerticalAlignment="Center"/>
 
                 <Button Click="Login_Button" Margin="0,15,55,0" Width="50" HorizontalAlignment="Right">Login</Button>
             </StackPanel>

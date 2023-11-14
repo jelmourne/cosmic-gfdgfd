@@ -15,11 +15,19 @@ using System.Windows.Shapes;
 
 namespace cosmic_management_system.View.UserPage {
     /// <summary>
-    /// Interaction logic for MapPage.xaml
+    /// Interaction logic for HomeLoginPage.xaml
     /// </summary>
-    public partial class MapPage : Page {
-        public MapPage() {
+    public partial class HomeLoginPage : Page {
+
+        private MainWindow mainWindow;
+        public HomeLoginPage(MainWindow mainWindow) {
             InitializeComponent();
+            this.mainWindow = mainWindow;
+            username.Text = mainWindow.user.Name;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            mainWindow.signOut();
         }
     }
 }

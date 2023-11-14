@@ -47,5 +47,23 @@ namespace cosmic_management_system.View.UserPage {
             var server_response = await client.PostAsJsonAsync("insertVendor", vendor);
             getVendor();
         }
+
+        private async void deleteAttenBtn_Click(object sender, RoutedEventArgs e) {
+            Vendor vendor = new Vendor();
+            vendor.id = 1;
+
+            var server_response = await client.PostAsJsonAsync("deleteVendor", vendor);
+            getVendor();
+        }
+
+        private async void updateAttenBtn_Click(object sender, RoutedEventArgs e) {
+            Vendor vendor = new Vendor();
+            vendor.id = 1;
+            vendor.name = vendorNameBox.Text;
+            vendor.type = vendorTypeBox.Text;
+
+            var server_response = await client.PostAsJsonAsync("updateVendor", vendor);
+            getVendor();
+        }
     }
 }
